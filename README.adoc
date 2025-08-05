@@ -1,0 +1,30 @@
+= Custom type counter
+In this article, we'll see how to forward a custom type (class) inside of a QML type and display it to the user
+
+:imagePath: ./assets/gif/
+:toc:
+:sectnums:
+
+== Introduction
+In this article, we'll build together a Counter (a non-visual type); that means we are going to create the type in the Cpp for consuption, then the type will be exposed as a QML to the user.
+
+== Counter class
+So the `Counter` class is a simple Cpp class that inherits from the `QObject` in order to have access to some macro for passing the type to the `QML` directly in order to make it instantiable. 
+
+=== Counter properties
+The counter will also have some properties that will let the application work such as:
+
+. A property that let you count the number of click
+. A property that let you handle whether you are counting upward or downward.
+
+=== Counter constructor
+Inside of the constructor of the `Counter` class, there is going to be a `QTimer`, that going to count how frequent the counter is going to changes, so we will control if we change every seconds, or more or less depending on how you want it to be.
+
+IMPORTANT: Keep in mind that the `Counter` class is going to be a non-visual type, that means `Counter` doesn't have any visual component to it, although, it's going to feed data to a visual type that is going to be a rectangle that display the Counter's value.
+
+NOTE: As said above, we will put the non-visual type to be used by the `QML` part of the app, that's why we'll need to include `QtQml` in the header and also add the macro `QML_ELEMENT`.
+
+== UI of the app
+Below is the UI / UX of the application once it has been finished:
+
+image::QMLCounterType.gif[]
